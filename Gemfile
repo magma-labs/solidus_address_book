@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'spree', github: 'spree/spree', branch: 'master'
-gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: 'master'
+gem 'rails', '~> 5.0.1'
+gem 'solidus', git: 'https://github.com/solidusio/solidus', branch: 'master'
+gem 'solidus_auth_devise', git: 'https://github.com/solidusio/solidus_auth_devise.git', branch: 'master'
 gemspec
 
 group :test do

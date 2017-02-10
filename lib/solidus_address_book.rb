@@ -1,9 +1,9 @@
-require 'spree_core'
+require 'solidus_core'
 
 module Spree
   module AddressBook
     class Engine < Rails::Engine
-      engine_name 'spree_address_book'
+      engine_name 'solidus_address_book'
       
       initializer "spree.address_book.environment", :before => :load_config_initializers do |app|
         Spree::AddressBook::Config = Spree::AddressBookConfiguration.new
