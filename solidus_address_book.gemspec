@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'solidus_auth_devise', ['>= 2.0', '< 3']
   s.add_dependency 'solidus_support'
   s.add_dependency 'deface', '~> 1.0'
+  s.add_dependency 'discard', '~> 1.0'
 
   s.add_development_dependency 'capybara'
   s.add_development_dependency 'capybara-screenshot'
