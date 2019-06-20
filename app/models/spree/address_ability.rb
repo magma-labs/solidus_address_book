@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Spree::AddressAbility
   include CanCan::Ability
 
@@ -6,7 +8,7 @@ class Spree::AddressAbility
       address.user == user
     end
 
-    can :create, Spree::Address do |address|
+    can :create, Spree::Address do |_address|
       user.id.present?
     end
   end

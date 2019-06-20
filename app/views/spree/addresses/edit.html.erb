@@ -1,10 +1,12 @@
 <div class="col-md-6 col-md-offset-3">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= t(:edit_shipping_address, scope: :address_book) %></h3>
+      <h3 class="panel-title"><%= t(:edit_shipping_address, scope: :spree) %></h3>
     </div>
+
     <div class="panel-body">
       <%= render 'spree/shared/error_messages', target: @address %>
+
       <%= form_for @address, html: { id: 'checkout_form_address' } do |f| %>
         <fieldset>
           <div class="inner">
@@ -15,7 +17,11 @@
               address: @address
             %>
           </div>
-          <%= f.submit Spree.t(:update), class: 'btn btn-primary' %>
+
+          <%= f.submit t('spree.update'), class: 'btn btn-primary' %>
+          <% if try_spree_current_user && respond_to?(:account_path) %>
+            <%= link_to t('spree.back_to_my_account'), spree.account_path, class: 'btn btn-primary' %>
+          <% end %>
         </fieldset>
       <% end %>
     </div>

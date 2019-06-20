@@ -2,11 +2,16 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  address_book:
+  spree:
+    address_index: "Address #%{number}"
+    back_to_my_account: Back to My Account
+    continue_checkout: Continue with Checkout
     other_address: "Other address"
     add_new_shipping_address: "Add new address"
+    label: Label
     new_shipping_address: "New Address"
     edit_shipping_address: "Edit Address"
+    my_shipping_addresses: "My Addresses"
     no_shipping_addresses_on_file: "No addresses on file"
     shipping_addresses: "Addresses"
     successfully_created: "Address has been successfully created."
@@ -15,4 +20,9 @@ en:
     unsuccessfully_saved: "There was an error while trying to save your address."
     successfully_updated: "Updated successfully"
     unsuccessfully_updated: "There was an update while trying to update your address."
+    unsuccessfully_removed: There was an error while trying to remove the address.
     save: "Save"
+    save_address: Save address
+    placeholder:
+      address:
+        label: Home, Work, etc

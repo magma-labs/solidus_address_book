@@ -1,40 +1,49 @@
-# Spree Address Book
+# SolidusAddressBook
 
-[![Build Status](https://travis-ci.org/spree-contrib/spree_address_book.svg?branch=master)](https://travis-ci.org/spree-contrib/spree_address_book) [![Code Climate](https://codeclimate.com/github/spree-contrib/spree_address_book/badges/gpa.svg)](https://codeclimate.com/github/spree-contrib/spree_address_book)
+[![Build Status](https://travis-ci.org/jtapia/solidus_address_book.svg?branch=master)](https://travis-ci.org/jtapia/solidus_address_book)
 
 This extension allows registered users to have multiple shipping & billing addresses and select each of them on checkout.
 
+This extension is a solidus version of [spree_address_book extension](https://github.com/spree-contrib/spree_address_book)
+
 ## Installation
 
-1. Add this extension to your Gemfile with this line:
-  ```ruby
-  gem 'spree_address_book', github: 'spree-contrib/spree_address_book', branch: 'X-X-stable'
-  ```
+Add this line to your application's Gemfile:
 
-  The `branch` option is important: it must match the version of Spree you're using.
-  For example, use `3-0-stable` if you're using Spree `3-0-stable` or any `3.0.x` version.
+```ruby
+gem 'solidus_address_book', github: 'jtapia/solidus_address_book'
+```
 
-2. Install the gem using Bundler:
-  ```ruby
-  bundle install
-  ```
+Then run the following:
 
-3. Copy & run migrations
-  ```ruby
-  bundle exec rails g spree_address_book:install
-  ```
+```console
+$ bundle install
+$ bundle exec rails g solidus_address_book:install
+```
 
-4. Restart your server
+## Preview
 
-  If your server was running, restart it so that it can find the assets properly.
+![account index](https://www.dropbox.com/s/n62vq7jy2lrwfeb/account-index.png?dl=0)
+![checkout user addresses](https://www.dropbox.com/s/4b8m1mdwajsn61t/checkout%20user%20addresses.png?dl=0)
+![edit address form](https://www.dropbox.com/s/csrhkn8scv87fmd/edit%20address%20form.png?dl=0)
+![new address form](https://www.dropbox.com/s/mqa81r5a4u7ghg9/new%20address%20form.png?dl=0)
+![checkout options](https://www.dropbox.com/s/m758ua2g6k9rmz0/1.png?dl=0)
+![checkout options](https://www.dropbox.com/s/t6s3ezsxen9izcn/2.png?dl=0)
+![checkout options](https://www.dropbox.com/s/ux0bcq8w4b2v1cc/3.png?dl=0)
+![checkout options](https://www.dropbox.com/s/2nid5ah14mr5y9u/4.png?dl=0)
 
+## Testing
+
+Run the following to automatically build a dummy app and run the tests:
+
+```console
+$ bundle exec rake
+```
 
 ## Contributing
 
-If you'd like to contribute, please take a look at the
-[instructions](CONTRIBUTING.md) for installing dependencies and crafting a good
-pull request.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jtapia/solidus_address_book.
 
 ## License
 
-Copyright (c) 2011-2016 Roman Smirnov & [contributors](https://github.com/spree-contrib/spree_address_book/graphs/contributors), released under the New BSD License
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

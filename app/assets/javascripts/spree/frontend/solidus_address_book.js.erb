@@ -1,24 +1,24 @@
 //= require spree/frontend
-<% require_asset('spree/frontend/spree_auth') if (Object.const_get("Spree::User") rescue false) %>
+//= require spree/frontend/solidus_auth
 
 (function($) {
   $(document).ready(function(){
-    if ($(".select_address").length > 0) {
-      $('input#order_use_billing').unbind("change");
+    if ($('.select_address').length > 0) {
+      $('input#order_use_billing').unbind('change');
 
       hide_address_form('billing');
       hide_address_form('shipping');
 
       if ($('input#order_use_billing').is(':checked')) {
-        $("#shipping .select_address").hide();
+        $('#shipping .select_address').hide();
       }
 
       $('input#order_use_billing').click(function() {
         if ($(this).is(':checked')) {
-          $("#shipping .select_address").hide();
+          $('#shipping .select_address').hide();
           hide_address_form('shipping');
         } else {
-          $("#shipping .select_address").show();
+          $('#shipping .select_address').show();
           if ($("input[name='order[ship_address_id]']:checked").val() == '0') {
             show_address_form('shipping');
           } else {
@@ -46,14 +46,14 @@
   });
 
   function hide_address_form(address_type){
-    $("#" + address_type + " .inner").hide();
-    $("#" + address_type + " .inner input").prop("disabled", true);
-    $("#" + address_type + " .inner select").prop("disabled", true);
+    $('#' + address_type + ' .inner').hide();
+    $('#' + address_type + ' .inner input').prop('disabled', true).prop('value', '');
+    $('#' + address_type + ' .inner select').prop('disabled', true).prop('value', '');
   }
 
   function show_address_form(address_type){
-    $("#" + address_type + " .inner").show();
-    $("#" + address_type + " .inner input").prop("disabled", false);
-    $("#" + address_type + " .inner select").prop("disabled", false);
+    $('#' + address_type + ' .inner').show();
+    $('#' + address_type + ' .inner input').prop('disabled', false).prop('value', '');
+    $('#' + address_type + ' .inner select').prop('disabled', false).prop('value', '');
   }
 })(jQuery);
