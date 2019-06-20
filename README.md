@@ -23,14 +23,14 @@ $ bundle exec rails g solidus_address_book:install
 
 ## Preview
 
-![account index](https://www.dropbox.com/s/n62vq7jy2lrwfeb/account-index.png?dl=0)
-![checkout user addresses](https://www.dropbox.com/s/4b8m1mdwajsn61t/checkout%20user%20addresses.png?dl=0)
-![edit address form](https://www.dropbox.com/s/csrhkn8scv87fmd/edit%20address%20form.png?dl=0)
-![new address form](https://www.dropbox.com/s/mqa81r5a4u7ghg9/new%20address%20form.png?dl=0)
-![checkout options](https://www.dropbox.com/s/m758ua2g6k9rmz0/1.png?dl=0)
-![checkout options](https://www.dropbox.com/s/t6s3ezsxen9izcn/2.png?dl=0)
-![checkout options](https://www.dropbox.com/s/ux0bcq8w4b2v1cc/3.png?dl=0)
-![checkout options](https://www.dropbox.com/s/2nid5ah14mr5y9u/4.png?dl=0)
+![account-index](https://user-images.githubusercontent.com/957520/59891993-f2d90180-939c-11e9-8812-1e4aea887734.png)
+![checkout user addresses](https://user-images.githubusercontent.com/957520/59891953-d76df680-939c-11e9-8395-6ff728aff51a.png)
+![edit address form](https://user-images.githubusercontent.com/957520/59891955-d8068d00-939c-11e9-9b90-1cdf70d75dbe.png)
+![new address form](https://user-images.githubusercontent.com/957520/59891956-d8068d00-939c-11e9-8e6a-ae079f7afa1a.png)
+![checkout address options](https://user-images.githubusercontent.com/957520/59892001-fbc9d300-939c-11e9-8571-d18a32a06868.png)
+![checkout address options](https://user-images.githubusercontent.com/957520/59892002-fbc9d300-939c-11e9-8873-b898743b329a.png)
+![checkout address options](https://user-images.githubusercontent.com/957520/59892003-fbc9d300-939c-11e9-9101-277b460c3375.png)
+![checkout address options](https://user-images.githubusercontent.com/957520/59892004-fbc9d300-939c-11e9-88b3-f5a1efecdad0.png)
 
 ## Testing
 
