@@ -4,6 +4,8 @@
 
 This extension allows registered users to have multiple shipping & billing addresses and select each of them on checkout.
 
+This extension is a solidus version of [spree_address_book extension](https://github.com/spree-contrib/spree_address_book)
+
 ## Installation
 
 Add this line to your application's Gemfile:

@@ -11,11 +11,10 @@ Gem::Specification.new do |s|
   s.summary = 'Adds address book for users to Spree'
   s.description = s.summary
 
-  s.required_ruby_version = '>= 2.1.2'
+  s.required_ruby_version = '>= 2.2'
 
-  s.author = 'Roman Smirnov'
-  s.email = 'POMAHC@gmail.com'
-  s.homepage = 'http://github.com/magma-labs/solidus_address_book'
+  s.author = 'Jonathan Tapia'
+  s.homepage = 'http://github.com/jtapia/solidus_address_book'
 
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
