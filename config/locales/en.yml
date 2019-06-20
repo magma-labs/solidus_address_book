@@ -4,6 +4,7 @@
 en:
   spree:
     address_index: "Address #%{number}"
+    back_to_my_account: Back to My Account
     continue_checkout: Continue with Checkout
     other_address: "Other address"
     add_new_shipping_address: "Add new address"
