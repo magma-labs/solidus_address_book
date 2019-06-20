@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CheckoutControllerDecorator
   extend ActiveSupport::Concern
 
@@ -34,10 +36,10 @@ module CheckoutControllerDecorator
     end
 
     def normalize_addresses
-      return unless params[:state] == "address" && @order.bill_address_id && @order.ship_address_id
+      return unless params[:state] == 'address' && @order.bill_address_id && @order.ship_address_id
 
       # ensure that there is no validation errors and addresses were saved
-      return unless @order.bill_address and @order.ship_address
+      return unless @order.bill_address && @order.ship_address
 
       bill_address = @order.bill_address
       ship_address = @order.ship_address
@@ -51,6 +53,8 @@ module CheckoutControllerDecorator
 
       ship_address.update_attribute(:user_id, try_spree_current_user&.id) if params[:save_user_address]
     end
+
+    private
 
     def user_addresses
       @user_addresses ||= try_spree_current_user&.addresses

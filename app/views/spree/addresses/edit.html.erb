@@ -19,8 +19,9 @@
           </div>
 
           <%= f.submit t('spree.update'), class: 'btn btn-primary' %>
-          <%= t('spree.or') %>
-          <%= link_to t('spree.continue_checkout'), checkout_state_path(@order&.state || 'address'), class: 'continue button gray' %>
+          <% if try_spree_current_user && respond_to?(:account_path) %>
+            <%= link_to t('spree.back_to_my_account'), spree.account_path, class: 'btn btn-primary' %>
+          <% end %>
         </fieldset>
       <% end %>
     </div>

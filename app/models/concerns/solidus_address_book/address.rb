@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'discard'
 
 module SolidusAddressBook
@@ -14,4 +16,3 @@ module SolidusAddressBook
     end
   end
 end
-

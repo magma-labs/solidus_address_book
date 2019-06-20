@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-RSpec.describe Spree::CheckoutController, type: :controller do
+describe Spree::CheckoutController, type: :controller do
   let(:user) { create(:user) }
   let(:order) do
     order = create(:order, bill_address_id: nil, ship_address_id: nil, user: user)

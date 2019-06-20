@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUserIdAndDeletedAtToAddresses < SolidusSupport::Migration[4.2]
   def self.up
     add_column :spree_addresses, :deleted_at, :datetime

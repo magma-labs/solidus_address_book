@@ -76,6 +76,7 @@
           )
         %>
       </span>
+
       <noscript>
         <%= address_form.text_field :state_name, class: 'required', autocomplete: address_type + ' address-level1',  required: true %>
       </noscript>
@@ -100,13 +101,14 @@
     </div>
   <% end %>
 
-
-  <div class="field" id=<%="#{address_id}save" %>>
-    <p class="field checkbox"  data-hook="save_user_address">
-      <%= label_tag :save_user_address, id: 'save_user_address' do %>
-        <%= check_box_tag 'save_user_address', '1' %>
-        <%= t('spree.save_address') %>
-      <% end %>
-    </p>
-  </div>
+  <% if params[:controller] == 'spree/checkout' %>
+    <div class="field" id=<%="#{address_id}save" %>>
+      <p class="field checkbox"  data-hook="save_user_address">
+        <%= label_tag :save_user_address, id: 'save_user_address' do %>
+          <%= check_box_tag 'save_user_address', '1' %>
+          <%= t('spree.save_address') %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
 </div>

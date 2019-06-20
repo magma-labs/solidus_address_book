@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Spree::Order do
@@ -26,7 +28,7 @@ describe Spree::Order do
     end
 
     it 'should have equal ids when option use_billing is active' do
-      order  = create(:order, use_billing: true,
+      order = create(:order, use_billing: true,
                                bill_address_id: address.id,
                                ship_address_id: nil)
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'discard'
 
 module AddressDecorator
@@ -38,14 +40,14 @@ module AddressDecorator
       new_record? || (Spree::Order.complete.where("bill_address_id = ? OR
                                                    ship_address_id = ? AND
                                                    state != 'complete' AND
-                                                   shipment_state != 'shipped'", self.id, self.id).count == 0)
+                                                   shipment_state != 'shipped'", id, id).count == 0)
     end
 
     def can_be_deleted?
       Spree::Order.where("bill_address_id = ? OR
                           ship_address_id = ? AND
                           state != 'complete' AND
-                          shipment_state != 'shipped'", self.id, self.id).count == 0
+                          shipment_state != 'shipped'", id, id).count == 0
     end
 
     def to_s
@@ -72,7 +74,7 @@ module AddressDecorator
     def check
       attrs = attributes.except('id', 'updated_at', 'created_at')
       the_same_address = user.addresses.where(attrs).first
-      the_same_address ? the_same_address : self
+      the_same_address || self
     end
   end
 end

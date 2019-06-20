@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Spree
   class AddressesController < Spree::StoreController
     helper Spree::AddressesHelper
@@ -5,7 +7,7 @@ module Spree
     load_and_authorize_resource class: Spree::Address
 
     before_action :load_address, only: [:update, :destroy]
-    before_action :set_return_to, only: :edit
+    before_action :set_return_path, only: :edit
 
     def new
       @address = Spree::Address.default
@@ -41,15 +43,15 @@ module Spree
 
     def address_params
       params.require(:address).permit(:label, :address, :firstname, :lastname,
-                              :address1, :address2, :city, :state_id, :zipcode,
-                              :country_id, :phone, :user_id)
+                                      :address1, :address2, :city, :state_id, :zipcode,
+                                      :country_id, :phone, :user_id)
     end
 
     def load_address
       @address ||= Spree::Address.find(id: params[:id])
     end
 
-    def set_return_to
+    def set_return_path
       session['spree_user_return_to'] = request.env['HTTP_REFERER']
     end
 
@@ -65,7 +67,9 @@ module Spree
     def clone_address
       address = @address
       new_address = Spree::Address.new(address.attributes.except('id',
-        'created_at', 'updated_at', 'deleted_at'))
+                                                                 'created_at',
+                                                                 'updated_at',
+                                                                 'deleted_at'))
       new_address.assign_attributes(address_params)
       address.destroy
 
@@ -78,4 +82,3 @@ module Spree
     end
   end
 end
-

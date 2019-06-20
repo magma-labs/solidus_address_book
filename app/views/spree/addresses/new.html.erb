@@ -18,7 +18,10 @@
             %>
           </div>
 
-          <%= f.submit t(:save, scope: :spree), class: 'btn btn-primary' %>
+          <%= f.submit t('spree.save'), class: 'btn btn-primary' %>
+          <% if try_spree_current_user && respond_to?(:account_path) %>
+            <%= link_to t('spree.back_to_my_account'), spree.account_path, class: 'btn btn-primary' %>
+          <% end %>
         </fieldset>
       <% end %>
     </div>
