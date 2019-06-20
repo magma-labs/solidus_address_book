@@ -4,67 +4,77 @@ module Spree
     rescue_from ActiveRecord::RecordNotFound, with: :render_404
     load_and_authorize_resource class: Spree::Address
 
-    def index
-      @addresses = spree_current_user.addresses
-    end
-
-    def create
-      @address = spree_current_user.addresses.build(address_params)
-
-      if @address.save
-        flash[:notice] = I18n.t(:successfully_created, scope: :spree)
-        redirect_to account_path
-      else
-        render action: 'new'
-      end
-    end
-
-    def show
-      redirect_to account_path
-    end
-
-    def edit
-      session['spree_user_return_to'] = request.env['HTTP_REFERER']
-    end
+    before_action :load_address, only: [:update, :destroy]
+    before_action :set_return_to, only: :edit
 
     def new
       @address = Spree::Address.default
     end
 
-    def update
-      if @address.editable?
-        if @address.update_attributes(address_params)
-          flash[:notice] = I18n.t(:successfully_updated, scope: :spree)
-          redirect_back_or_default(account_path)
-        else
-          render action: 'edit'
-        end
+    def create
+      @address = try_spree_current_user.addresses.build(address_params)
+
+      if @address.save
+        flash[:notice] = t('spree.successfully_created')
+        redirect_to account_path
       else
-        new_address = @address.clone
-        new_address.attributes = address_params
-        @address.update_attribute(:deleted_at, Time.now)
-        if new_address.save
-          flash[:notice] = I18n.t(:successfully_updated, scope: :spree)
-          redirect_back_or_default(account_path)
-        else
-          render action: 'edit'
-        end
+        flash[:error] = @address.errors.full_messages.join(', ')
+        render action: 'new'
       end
     end
 
-    def destroy
-      @address.destroy
+    def update
+      @address.editable? ? update_address : clone_address
+    end
 
-      flash[:notice] = I18n.t(:successfully_removed, scope: :spree)
-      redirect_to(request.env['HTTP_REFERER'] || account_path) unless request.xhr?
+    def destroy
+      if @address.destroy
+        flash[:notice] = t('spree.successfully_removed')
+        redirect_to request.env['HTTP_REFERER'] || account_path
+      else
+        flash[:error] = t('spree.unsuccessfully_removed')
+        redirect_to :back
+      end
     end
 
     private
 
     def address_params
-      params[:address].permit(:address, :firstname, :lastname, :address1,
-                              :address2, :city, :state_id, :zipcode,
+      params.require(:address).permit(:label, :address, :firstname, :lastname,
+                              :address1, :address2, :city, :state_id, :zipcode,
                               :country_id, :phone, :user_id)
+    end
+
+    def load_address
+      @address ||= Spree::Address.find(id: params[:id])
+    end
+
+    def set_return_to
+      session['spree_user_return_to'] = request.env['HTTP_REFERER']
+    end
+
+    def update_address
+      if @address.update_attributes(address_params)
+        flash[:notice] = t('spree.successfully_updated')
+        redirect_back_or_default(account_path)
+      else
+        render action: 'edit'
+      end
+    end
+
+    def clone_address
+      address = @address
+      new_address = Spree::Address.new(address.attributes.except('id',
+        'created_at', 'updated_at', 'deleted_at'))
+      new_address.assign_attributes(address_params)
+      address.destroy
+
+      if @address = new_address.save
+        flash[:notice] = t('spree.successfully_updated')
+        redirect_back_or_default(account_path)
+      else
+        render action: 'edit'
+      end
     end
   end
 end
