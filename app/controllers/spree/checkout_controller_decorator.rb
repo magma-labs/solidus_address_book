@@ -1,13 +1,13 @@
 module CheckoutControllerDecorator
   extend ActiveSupport::Concern
 
-# Spree::CheckoutController.class_eval do
   included do
     prepend(InstanceMethods)
     helper Spree::AddressesHelper
 
     after_action :normalize_addresses, only: :update
     before_action :set_addresses, only: :update
+    before_action :user_addresses, only: :edit, if: -> { params[:state] == 'address' }
   end
 
   module InstanceMethods
@@ -43,15 +43,19 @@ module CheckoutControllerDecorator
       ship_address = @order.ship_address
 
       if @order.bill_address_id != @order.ship_address_id && bill_address.same_as?(ship_address)
-        @order.update_column(:bill_address_id, ship_address.id)
+        @order.update_attribute(:bill_address_id, ship_address.id)
         bill_address.destroy
-      else
-        bill_address.update_column(:user_id, try_spree_current_user.try(:id))
+      elsif params[:save_user_address]
+        bill_address.update_attribute(:user_id, try_spree_current_user&.id)
       end
 
-      ship_address.update_column(:user_id, try_spree_current_user.try(:id))
+      ship_address.update_attribute(:user_id, try_spree_current_user&.id) if params[:save_user_address]
+    end
+
+    def user_addresses
+      @user_addresses ||= try_spree_current_user&.addresses
     end
   end
 end
 
-# Spree::CheckoutController.include(CheckoutControllerDecorator)
+Spree::CheckoutController.include(CheckoutControllerDecorator)
