@@ -3,8 +3,10 @@
     <div class="panel-heading">
       <h3 class="panel-title"><%= t(:edit_shipping_address, scope: :spree) %></h3>
     </div>
+
     <div class="panel-body">
       <%= render 'spree/shared/error_messages', target: @address %>
+
       <%= form_for @address, html: { id: 'checkout_form_address' } do |f| %>
         <fieldset>
           <div class="inner">
@@ -15,7 +17,10 @@
               address: @address
             %>
           </div>
-          <%= f.submit t(:update, scope: :spree), class: 'btn btn-primary' %>
+
+          <%= f.submit t('spree.update'), class: 'btn btn-primary' %>
+          <%= t('spree.or') %>
+          <%= link_to t('spree.continue_checkout'), checkout_state_path(@order&.state || 'address'), class: 'continue button gray' %>
         </fieldset>
       <% end %>
     </div>

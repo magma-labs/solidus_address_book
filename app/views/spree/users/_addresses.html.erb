@@ -1,23 +1,36 @@
-<h3><%= t(:shipping_addresses, scope: :spree) %></h3>
-<% if spree_current_user.addresses.present? %>
-<table id='user_addresses' class="table table-striped">
-  <tbody>
-    <% spree_current_user.addresses.each do |address| %>
-    <tr>
-      <td><%= address.to_s.gsub("<br/>", ", ") %></td>
-      <td>
-        <%= link_to I18n.t(:edit, scope: :spree), edit_address_path(address) %>&nbsp;
-        <%= link_to I18n.t(:remove, scope: :spree), address_path(address), method: :delete, confirm: I18n.t(:are_you_sure, scope: :spree) %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<% else %>
-<div id='users-address-list-empty'>
-  <%= t(:no_shipping_addresses_on_file, scope: :spree) %>
-</div>
-<% end %>
-<div id='new_address_link'>
-  <%= link_to t(:add_new_shipping_address, scope: :spree), controller: :addresses, action: :new %>
+<div data-hook='account_my_addresses' class='account-my-addresses'>
+  <h3><%= t('spree.my_shipping_addresses') %></h3>
+
+  <% if try_spree_current_user.addresses.present? %>
+    <table id='user_addresses' data-hook='account_my_addresses_table'>
+      <thead>
+        <tr>
+          <th class="address-label"><%= t('spree.label') %></th>
+          <th class="address-info"><%= t('spree.address_information') %></th>
+          <th class="address-actions"></th>
+        </tr>
+      </thead>
+
+      <% try_spree_current_user.addresses.each do |address| %>
+        <tr class="<%= cycle('even', 'odd') %>">
+          <td><%= address.label %></td>
+          <td><%= address.to_s.gsub("<br/>", ", ") %></td>
+          <td class='actions'>
+            <%= link_to_with_icon 'edit', t('spree.actions.edit'), edit_address_path(address), no_text: true %>
+            <% if address.can_be_deleted? %>
+              <%= link_to_with_icon 'trash', '', address_path(address), method: :delete, class: 'delete', data: { confirm: t('spree.are_you_sure') }%>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <div id='users-address-list-empty'>
+      <%= t('spree.no_shipping_addresses_on_file') %>
+    </div>
+  <% end %>
+
+  <div id='new_address_link'>
+    <%= link_to t('spree.add_new_shipping_address'), new_address_path, class: 'btn primary' %>
+  </div>
 </div>
