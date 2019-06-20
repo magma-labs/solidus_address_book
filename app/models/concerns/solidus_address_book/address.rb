@@ -9,6 +9,8 @@ module SolidusAddressBook
 
       include Discard::Model
       self.discard_column = :deleted_at
+
+      scope :with_deleted, -> { where.not(deleted_at: nil) }
     end
   end
 end
