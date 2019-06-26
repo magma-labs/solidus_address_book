@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.2'
 
   s.author = 'Jonathan Tapia'
-  s.homepage = 'http://github.com/jtapia/solidus_address_book'
+  s.homepage = 'http://github.com/magma-labs/solidus_address_book'
 
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")

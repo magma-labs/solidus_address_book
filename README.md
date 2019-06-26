@@ -1,6 +1,6 @@
 # SolidusAddressBook
 
-[![Build Status](https://travis-ci.org/jtapia/solidus_address_book.svg?branch=master)](https://travis-ci.org/jtapia/solidus_address_book)
+[![Build Status](https://travis-ci.org/magma-labs/solidus_address_book.svg?branch=master)](https://travis-ci.org/magma-labs/solidus_address_book)
 
 This extension allows registered users to have multiple shipping & billing addresses and select each of them on checkout.
 
@@ -11,7 +11,7 @@ This extension is a solidus version of [spree_address_book extension](https://gi
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'solidus_address_book', github: 'jtapia/solidus_address_book'
+gem 'solidus_address_book', github: 'magma-labs/solidus_address_book'
 ```
 
 Then run the following:
@@ -42,7 +42,7 @@ $ bundle exec rake
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/jtapia/solidus_address_book.
+Bug reports and pull requests are welcome on GitHub at https://github.com/magma-labs/solidus_address_book.
 
 ## License
 
